@@ -2,15 +2,16 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import "./App.css";
 import AboutUs from "./pages/AboutUs";
-import Cart from "./pages/Cart";
-import SingleItem from "./pages/SingleItem";
+import SingleItemPage from "./pages/SingleItemPage";
+import CartPage from "./pages/CartPage";
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/singleitem/:id" element={<SingleItem />} />
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/singleitem/:id" element={<SingleItemPage />} />
         <Route path="/aboutus" element={<AboutUs />} />
       </Routes>
     </BrowserRouter>
