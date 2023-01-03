@@ -5,11 +5,13 @@ import AboutUs from "./pages/AboutUs";
 import SingleItemPage from "./pages/SingleItemPage";
 import CartPage from "./pages/CartPage";
 import CartProvider from "./Context/CartProvider";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
     <BrowserRouter>
       <CartProvider>
+        <ToastContainer />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/cart" element={<CartPage />} />

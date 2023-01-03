@@ -27,23 +27,19 @@ const CartPage = () => {
               <h3 className="font-bold">صورت حساب</h3>
               <div className="px-4 mt-4 flex  items-center justify-between  text-sm  w-full ">
                 <span>قیمت کل</span>
-                <span className="font-bold">
-                  {originalTotalPrice} هزارتومان
-                </span>
+                <span>{originalTotalPrice} هزارتومان</span>
               </div>
               <div className="px-4 mt-4 flex  items-center justify-between  text-sm  w-full ">
                 <span>تخفیف</span>
-                <span className="font-bold">
-                  {originalTotalPrice - total} هزارتومان
-                </span>
+                <span>{originalTotalPrice - total} هزارتومان</span>
               </div>
-              <div className="px-4 mt-4 flex  items-center justify-between  text-sm  w-full ">
+              <div className="border-t pt-2 px-4 mt-4 flex  items-center justify-between  text-sm  w-full ">
                 <span>قیمت پرداختی</span>
                 <span className="font-bold">{total} هزارتومان</span>
               </div>
             </div>
             <div>
-              <button className="bg-black text-white px-4 py-2 rounded-md">
+              <button className="bg-black text-white px-4 py-1 rounded-md ">
                 پرداخت سفارش
               </button>
             </div>

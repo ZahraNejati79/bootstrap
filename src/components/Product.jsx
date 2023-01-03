@@ -1,8 +1,14 @@
-import { useCartAction } from "../Context/CartProvider";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useCart, useCartAction } from "../Context/CartProvider";
+import checkInCart from "../utils/checkInCart";
 
 const Product = ({ product }) => {
   const dispatch = useCartAction();
+  const { cart } = useCart();
   const addToCartHandler = (product) => {
+    toast.success(` با موفقیت به سبد خرید اضافه شد ${product.name}`);
+
     dispatch({ type: "ADD_TO_CART", payload: product });
   };
   return (
@@ -12,9 +18,15 @@ const Product = ({ product }) => {
           <img className="w-full h-full" src={product.image} alt="product" />
         </div>
         <div className="my-2  ">{product.price} هزار تومان</div>
-        <button onClick={() => addToCartHandler(product)}>
-          افزودن به سبد خرید
-        </button>
+        <div>
+          {checkInCart(cart, product) ? (
+            <Link to="/cart">ادامه سفارش </Link>
+          ) : (
+            <button onClick={() => addToCartHandler(product)}>
+              افزودن به سبد خرید
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
