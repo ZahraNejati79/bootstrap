@@ -4,16 +4,19 @@ import "./App.css";
 import AboutUs from "./pages/AboutUs";
 import SingleItemPage from "./pages/SingleItemPage";
 import CartPage from "./pages/CartPage";
+import CartProvider from "./Context/CartProvider";
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/cart" element={<CartPage />} />
-        <Route path="/singleitem/:id" element={<SingleItemPage />} />
-        <Route path="/aboutus" element={<AboutUs />} />
-      </Routes>
+      <CartProvider>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/singleitem/:id" element={<SingleItemPage />} />
+          <Route path="/aboutus" element={<AboutUs />} />
+        </Routes>
+      </CartProvider>
     </BrowserRouter>
   );
 }
