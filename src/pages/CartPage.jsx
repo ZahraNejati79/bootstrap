@@ -7,8 +7,8 @@ const CartPage = () => {
   const { cart } = useCart();
   return (
     <Layout>
-      <section className="flex">
-        <div>
+      <section className="flex ">
+        <div className="">
           {cart.length ? (
             cart.map((p) => <CartProducts product={p} />)
           ) : (

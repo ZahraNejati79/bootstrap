@@ -3,7 +3,6 @@ import { useCartAction } from "../Context/CartProvider";
 const Product = ({ product }) => {
   const dispatch = useCartAction();
   const addToCartHandler = (product) => {
-    console.log(product);
     dispatch({ type: "ADD_TO_CART", payload: product });
   };
   return (

@@ -12,7 +12,38 @@ const cartReducer = (state, action) => {
         updatedItem.quantity++;
         updatedCart[updatedCartIndex] = updatedItem;
       }
-      return { ...state, cart: updatedCart };
+
+      return {
+        ...state,
+        cart: updatedCart,
+        total: state.total + action.payload.price,
+      };
+    }
+    case "DECREMENT_CART_ITEM": {
+      const updatedCart = [...state.cart];
+      const updatedCartIndex = updatedCart.findIndex(
+        (P) => P.id === action.payload.id
+      );
+      const updatedCartItem = updatedCart[updatedCartIndex];
+      if (updatedCartItem.quantity > 1) {
+        updatedCartItem.quantity--;
+        updatedCart[updatedCartIndex] = updatedCartItem;
+      } else {
+        const deletedCartItem = updatedCart.filter(
+          (p) => p.id !== action.payload.id
+        );
+        return {
+          ...state,
+          cart: deletedCartItem,
+          total: state.total - action.payload.price,
+        };
+      }
+
+      return {
+        ...state,
+        cart: updatedCart,
+        total: state.total - action.payload.price,
+      };
     }
   }
 };
