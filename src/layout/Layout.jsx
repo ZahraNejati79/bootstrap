@@ -1,28 +1,12 @@
-import { NavLink } from "react-router-dom";
+import Nav from "../components/Nav";
 
 const Layout = ({ children }) => {
   return (
-    <>
-      <header>
-        <nav>
-          <ul className="flex items-center justify-between ">
-            <li>
-              <NavLink to="/">خانه</NavLink>
-            </li>
-            <li>
-              <NavLink to="/products">محصولات</NavLink>
-            </li>
-            <li>
-              <NavLink to="/aboutUs">درباره ما</NavLink>
-            </li>
-            <li>
-              <NavLink to="/velog">ولاگ</NavLink>
-            </li>
-          </ul>
-        </nav>
-      </header>
-      {children}
-    </>
+    <div className="h-screen">
+      <Nav />
+      <main className="h-5/6">{children}</main>
+      <footer className="static bottom-0">this is footer</footer>
+    </div>
   );
 };
 
