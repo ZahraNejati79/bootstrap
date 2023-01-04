@@ -1,4 +1,5 @@
 import { useFormik } from "formik";
+import { Link } from "react-router-dom";
 import * as Yup from "yup";
 const SignupForm = () => {
   const validationSchema = Yup.object({
@@ -129,6 +130,9 @@ const SignupForm = () => {
           ثبت نام
         </button>
       </form>
+      <div className="w-full mt-2 text-gray-500 hover:text-gray-700">
+        <Link to="/login">قبلا ثبت نام کرده اید ؟</Link>
+      </div>
     </div>
   );
 };
