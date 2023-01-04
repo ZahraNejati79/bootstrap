@@ -8,7 +8,6 @@ const Product = ({ product }) => {
   const { cart } = useCart();
   const addToCartHandler = (product) => {
     toast.success(` با موفقیت به سبد خرید اضافه شد ${product.name}`);
-
     dispatch({ type: "ADD_TO_CART", payload: product });
   };
   return (

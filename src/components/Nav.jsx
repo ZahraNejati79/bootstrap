@@ -11,7 +11,7 @@ const Nav = () => {
             <NavLink to="/">خانه</NavLink>
           </li>
           <li>
-            <NavLink to="/products">محصولات</NavLink>
+            <NavLink to="/">محصولات</NavLink>
           </li>
           <li>
             <NavLink to="/aboutUs">درباره ما</NavLink>
@@ -25,7 +25,7 @@ const Nav = () => {
             <NavLink to="/cart">سبد خرید</NavLink>
           </li>
           <li>
-            <NavLink to="/">ثبت نام/ورود</NavLink>
+            <NavLink to="/signup">ثبت نام/ورود</NavLink>
           </li>
         </ul>
       </nav>

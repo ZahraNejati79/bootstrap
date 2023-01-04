@@ -11,22 +11,22 @@ const CartProducts = ({ product }) => {
     dispatch({ type: "ADD_TO_CART", payload: product });
   };
   return (
-    <div className=" mb-2 rounded-md shadow-lg flex items-center justify-between ">
-      <div className=" w-40 h-36 ml-2">
+    <div className=" mb-2 rounded-md shadow-lg flex items-center justify-between md:min-w-[36rem] ">
+      <div className="w-32 h-32 h md:w-40 md:h-36 ml-2">
         <img className="w-full h-full" src={product.image} alt="cartImage" />
       </div>
 
       <div className="flex text-sm items-center justify-between">
-        <div className="flex flex-col justify-center gap-y-2 ">
+        <div className="flex flex-col justify-center gap-y-2 md:min-w-[10rem]  w-24 ">
           <div>{product.name}</div>
-          <div>
+          <div className="hidden mr-4 md:block text-sm text-gray-400 ">
             {product.description.map((p) => (
               <div>{p.support}</div>
             ))}
           </div>
-          <div>{product.offprice}هزار تومان</div>
+          <div>{product.offPrice}هزار تومان</div>
         </div>
-        <div className="ml-8 px-2 border border-slate-500 flex items-center justify-center mr-10 gap-4">
+        <div className="ml-8 md:px-2 border border-slate-500 flex items-center justify-center mr-4 md:mr-10 gap-4">
           <button onClick={() => incrementHandler(product)}>
             <GrAdd />
           </button>

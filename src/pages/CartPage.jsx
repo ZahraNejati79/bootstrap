@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import CartProducts from "../components/CartProducts";
 import Product from "../components/Product";
 import { useCart } from "../Context/CartProvider";
@@ -40,7 +41,7 @@ const CartPage = () => {
             </div>
             <div>
               <button className="bg-black text-white px-4 py-1 rounded-md ">
-                پرداخت سفارش
+                <NavLink to="/checkout"> پرداخت سفارش</NavLink>
               </button>
             </div>
           </div>

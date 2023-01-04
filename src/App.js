@@ -7,6 +7,9 @@ import CartPage from "./pages/CartPage";
 import CartProvider from "./Context/CartProvider";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CheckoutPage from "./pages/CheckoutPage";
+import LoginPage from "./pages/loginPage";
+import SingnupPage from "./pages/SingnupPage";
 function App() {
   return (
     <BrowserRouter>
@@ -17,6 +20,9 @@ function App() {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/singleitem/:id" element={<SingleItemPage />} />
           <Route path="/aboutus" element={<AboutUs />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SingnupPage />} />
         </Routes>
       </CartProvider>
     </BrowserRouter>

@@ -1,5 +1,7 @@
+import Layout from "../Layout/Layout";
+
 const AboutUs = () => {
-  return <div>this is AboutUs pages</div>;
+  return <Layout>this is AboutUs pages</Layout>;
 };
 
 export default AboutUs;
