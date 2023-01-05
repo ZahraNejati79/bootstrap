@@ -1,8 +1,10 @@
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../Context/AuthProvider";
 import { useCart } from "../Context/CartProvider";
 
 const Nav = () => {
   const { cart } = useCart();
+  const auth = useAuth();
   return (
     <header className="shadow-lg mb-6 w-screen h-12 flex items-center justify-center">
       <nav className="md:px-28 container flex justify-between items-center ">
@@ -25,7 +27,7 @@ const Nav = () => {
             <NavLink to="/cart">سبد خرید</NavLink>
           </li>
           <li>
-            <NavLink to="/signup">ثبت نام/ورود</NavLink>
+            <NavLink to="/signup">{auth ? "پروفایل" : "ثبت نام/ورود"}</NavLink>
           </li>
         </ul>
       </nav>

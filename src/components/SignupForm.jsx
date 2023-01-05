@@ -2,10 +2,12 @@ import { useFormik } from "formik";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
+import { useAuthAction } from "../Context/AuthProvider";
 import { signupUser } from "../Services/SignupService";
 import { showError } from "../utils/showError";
 const SignupForm = () => {
   const [error, setError] = useState(null);
+  const setAuth = useAuthAction();
   const validationSchema = Yup.object({
     name: Yup.string()
       .required("وارد کردن نام الزامی است")
@@ -29,9 +31,10 @@ const SignupForm = () => {
       phoneNumber,
       password,
     };
-    console.log(userData);
     try {
       const { data } = await signupUser(userData);
+      setAuth(data);
+      localStorage.setItem("authData", JSON.stringify(data));
       console.log(data);
     } catch (error) {
       if (error.response.data.message) {

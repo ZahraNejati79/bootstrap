@@ -1,68 +1,68 @@
-import { useReducer, useEffect } from "react";
-import axios from "axios";
+// import { useReducer, useEffect } from "react";
+// import axios from "axios";
 
-const initialState = {
-  error: null,
-  data: null,
-  loading: false,
-};
+// const initialState = {
+//   error: null,
+//   data: null,
+//   loading: false,
+// };
 
-const actions = {
-  fetchRequest: "FETCH_DATA_REQUESR",
-  fetchSuccess: "FETCH_DATA_SUCCESS",
-  fetchFailure: "FETCH_DATA_FAILURE",
-};
+// const actions = {
+//   fetchRequest: "FETCH_DATA_REQUESR",
+//   fetchSuccess: "FETCH_DATA_SUCCESS",
+//   fetchFailure: "FETCH_DATA_FAILURE",
+// };
 
-function reducer(state, action) {
-  switch (action.type) {
-    case actions.fetchRequest: {
-      return { ...state, loading: true, error: null, data: null };
-    }
-    case actions.fetchSuccess: {
-      return { ...state, loading: false, error: null, data: action.payload };
-    }
-    case actions.fetchFailure: {
-      return { ...state, loading: false, error: action.payload, data: null };
-    }
-    default:
-      return state;
-  }
-}
+// function reducer(state, action) {
+//   switch (action.type) {
+//     case actions.fetchRequest: {
+//       return { ...state, loading: true, error: null, data: null };
+//     }
+//     case actions.fetchSuccess: {
+//       return { ...state, loading: false, error: null, data: action.payload };
+//     }
+//     case actions.fetchFailure: {
+//       return { ...state, loading: false, error: action.payload, data: null };
+//     }
+//     default:
+//       return state;
+//   }
+// }
 
-const useFetch = (url) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+// const useFetch = (url) => {
+//   const [state, dispatch] = useReducer(reducer, initialState);
 
-  useEffect(() => {
-    dispatch({ type: actions.fetchRequest });
+//   useEffect(() => {
+//     dispatch({ type: actions.fetchRequest });
 
-    axios
-      .get(url)
-      .then((res) => {
-        dispatch({ type: actions.fetchSuccess, payload: res.data });
-      })
-      .catch((err) => {
-        dispatch({ type: actions.fetchFailure, payload: err.message });
-      });
-  }, [url]);
+//     axios
+//       .get(url)
+//       .then((res) => {
+//         dispatch({ type: actions.fetchSuccess, payload: res.data });
+//       })
+//       .catch((err) => {
+//         dispatch({ type: actions.fetchFailure, payload: err.message });
+//       });
+//   }, [url]);
 
-  return state;
-};
-export default useFetch;
+//   return state;
+// };
+// export default useFetch;
 
-// const { error, loading, data } = useFetch(
-//   "https://jsonplaceholder.typicode.com/users"
-// );
-// return (
-//   <div className="App">
-//     <div>salam</div>
-//     {error && <div>{error}</div>}
-//     {loading && <div>loading</div>}
-//     {data && (
-//       <div>
-//         {data.map((data) => {
-//           return <div key={data.id}>{data.name}</div>;
-//         })}
-//       </div>
-//     )}
-//   </div>
-// );
+// // const { error, loading, data } = useFetch(
+// //   "https://jsonplaceholder.typicode.com/users"
+// // );
+// // return (
+// //   <div className="App">
+// //     <div>salam</div>
+// //     {error && <div>{error}</div>}
+// //     {loading && <div>loading</div>}
+// //     {data && (
+// //       <div>
+// //         {data.map((data) => {
+// //           return <div key={data.id}>{data.name}</div>;
+// //         })}
+// //       </div>
+// //     )}
+// //   </div>
+// // );

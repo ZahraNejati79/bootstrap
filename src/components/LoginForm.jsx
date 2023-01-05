@@ -1,26 +1,54 @@
 import { useFormik } from "formik";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+import { useAuthAction } from "../Context/AuthProvider";
+import { loginUser } from "../Services/loginService";
+import { showError } from "../utils/showError";
 const LoginForm = () => {
+  const [error, setError] = useState(null);
+  const setAuth = useAuthAction();
+  const navigate = useNavigate();
+
   const validationSchema = Yup.object({
     name: Yup.string()
       .required("وارد کردن نام الزامی است")
       .min(6, "حداقل 6 کاراکتر"),
     password: Yup.string().required("وارد کردن رمز عبور الزامی است"),
   });
+
+  const onSubmit = async (values) => {
+    const { name, phoneNumber } = values;
+    const loginData = {
+      name,
+      phoneNumber,
+    };
+    try {
+      const { data } = await loginUser(loginData);
+      setAuth(data);
+      localStorage.setItem("authData", JSON.stringify(data));
+      setError(null);
+      navigate("/");
+    } catch (error) {
+      if (error.response.data.message) {
+        setError(error.response.data.message);
+      }
+    }
+  };
+
   const formik = useFormik({
     initialValues: {
       name: "",
       phoneNumber: "",
     },
-    handleSubmit: (values) => console.log(values),
+    onSubmit,
     validationSchema,
     validateOnMount: true,
   });
 
   return (
     <div className="bg-white w-full h-fit container min-w-[20rem] md:min-w-[32rem] max-w-md p-4 mt-4 rounded-lg border border-gray-300 mx-2">
-      <form onSubmit={formik.handleSubmit}>
+      <form onSubmit={formik.onSubmit}>
         <div className="mb-3 flex flex-col items-end justify-center gap-2 rounded-lg focus:border-blue_500 focus:border">
           <label className=" w-full" htmlFor="name">
             نام کاربری
@@ -61,6 +89,7 @@ const LoginForm = () => {
         >
           ورود
         </button>
+        {error && <div>{showError(error)}</div>}
       </form>
       <div className="w-full mt-2 text-gray-500 hover:text-gray-700">
         <Link to="/signup">هنوز ثبت نام کرده اید ؟</Link>
