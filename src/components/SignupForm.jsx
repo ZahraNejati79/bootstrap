@@ -1,7 +1,11 @@
 import { useFormik } from "formik";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
+import { signupUser } from "../Services/SignupService";
+import { showError } from "../utils/showError";
 const SignupForm = () => {
+  const [error, setError] = useState(null);
   const validationSchema = Yup.object({
     name: Yup.string()
       .required("وارد کردن نام الزامی است")
@@ -17,7 +21,24 @@ const SignupForm = () => {
       .required("الزامی*")
       .oneOf([Yup.ref("password"), null], "با رمز عبور مطابقت ندارد"),
   });
-
+  const onSubmit = async (values) => {
+    const { name, email, phoneNumber, password } = values;
+    const userData = {
+      name,
+      email,
+      phoneNumber,
+      password,
+    };
+    console.log(userData);
+    try {
+      const { data } = await signupUser(userData);
+      console.log(data);
+    } catch (error) {
+      if (error.response.data.message) {
+        setError(error.response.data.message);
+      }
+    }
+  };
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -26,7 +47,7 @@ const SignupForm = () => {
       password: "",
       passwordConfirmation: "",
     },
-    onSubmit: (values) => console.log(values),
+    onSubmit,
     validationSchema,
     validateOnMount: true,
   });
@@ -129,6 +150,7 @@ const SignupForm = () => {
         >
           ثبت نام
         </button>
+        {error && <div>{showError(error)}</div>}
       </form>
       <div className="w-full mt-2 text-gray-500 hover:text-gray-700">
         <Link to="/login">قبلا ثبت نام کرده اید ؟</Link>
