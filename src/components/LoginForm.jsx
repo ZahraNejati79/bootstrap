@@ -7,7 +7,7 @@ import { loginUser } from "../Services/loginService";
 import { showError } from "../utils/showError";
 const LoginForm = () => {
   const [error, setError] = useState(null);
-  const setAuth = useAuthAction();
+
   const navigate = useNavigate();
 
   const validationSchema = Yup.object({
@@ -25,8 +25,7 @@ const LoginForm = () => {
     };
     try {
       const { data } = await loginUser(loginData);
-      setAuth(data);
-      localStorage.setItem("authData", JSON.stringify(data));
+      console.log(data);
       setError(null);
       navigate("/");
     } catch (error) {

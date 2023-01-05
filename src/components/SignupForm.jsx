@@ -7,7 +7,7 @@ import { signupUser } from "../Services/SignupService";
 import { showError } from "../utils/showError";
 const SignupForm = () => {
   const [error, setError] = useState(null);
-  const setAuth = useAuthAction();
+
   const validationSchema = Yup.object({
     name: Yup.string()
       .required("وارد کردن نام الزامی است")
@@ -33,8 +33,6 @@ const SignupForm = () => {
     };
     try {
       const { data } = await signupUser(userData);
-      setAuth(data);
-      localStorage.setItem("authData", JSON.stringify(data));
       console.log(data);
     } catch (error) {
       if (error.response.data.message) {
